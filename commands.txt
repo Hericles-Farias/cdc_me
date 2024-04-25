@@ -1,0 +1,4 @@
+
+curl https://raw.githubusercontent.com/Hericles-Farias/cdc_me/ca895b24321c650f13e1d71eda6157a3eb806fe9/oracle_logminer.sh | sh
+
+curl https://raw.githubusercontent.com/Hericles-Farias/cdc_me/ca895b24321c650f13e1d71eda6157a3eb806fe9/scripts.sql | sqlplus debezium/dbz@//localhost:1521/xepdb1
