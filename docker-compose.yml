@@ -1,6 +1,5 @@
 version: "3.7"
 services:
-
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -72,11 +71,16 @@ services:
     
   oracle:
     container_name: oracle
-    image: gvenzl/oracle-xe:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "1521:1521"
     environment:
       - ORACLE_PASSWORD=top_secret
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+
 
   kafdrop:
     image: obsidiandynamics/kafdrop
@@ -90,7 +94,9 @@ services:
       - kafka
   
 
-
+volumes:
+  oracle-data:
+    driver: local
 
 
 
