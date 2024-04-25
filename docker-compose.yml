@@ -78,6 +78,20 @@ services:
     environment:
       - ORACLE_PASSWORD=top_secret
 
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - "9001:9001"
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: "-Xms32M -Xmx64M"
+      SERVER_SERVLET_CONTEXTPATH: "/"
+    depends_on:
+      - kafka
+  
+
+
+
 
 
 
