@@ -5,7 +5,7 @@ ORACLE_SID=XE
 export ORACLE_SID
 sqlplus /nolog <<- EOF
 	CONNECT sys/top_secret AS SYSDBA
-	alter system set db_recovery_file_dest_size = 10G;
+	alter system set db_recovery_file_dest_size = 100G;
 	alter system set db_recovery_file_dest = '/opt/oracle/oradata/recovery_area' scope=spfile;
 	shutdown immediate
 	startup mount
@@ -55,12 +55,23 @@ sqlplus sys/top_secret@//localhost:1521/xe as sysdba <<- EOF
 
   GRANT EXECUTE ON DBMS_LOGMNR TO c##dbzuser CONTAINER=ALL;
   GRANT EXECUTE ON DBMS_LOGMNR_D TO c##dbzuser CONTAINER=ALL;
+
+  GRANT SELECT ON V_\$LOG TO c##dbzuser CONTAINER=ALL; 
+  GRANT SELECT ON V_\$LOG_HISTORY TO c##dbzuser CONTAINER=ALL;
+
   GRANT SELECT ON V_\$LOGMNR_LOGS TO c##dbzuser CONTAINER=ALL;
   GRANT SELECT ON V_\$LOGMNR_CONTENTS TO c##dbzuser CONTAINER=ALL;
+
+  GRANT SELECT ON V_\$LOGMNR_PARAMETERS TO c##dbzuser CONTAINER=ALL;
+
   GRANT SELECT ON V_\$LOGFILE TO c##dbzuser CONTAINER=ALL;
   GRANT SELECT ON V_\$ARCHIVED_LOG TO c##dbzuser CONTAINER=ALL;
   GRANT SELECT ON V_\$ARCHIVE_DEST_STATUS TO c##dbzuser CONTAINER=ALL;
+  GRANT SELECT ON V_\$TRANSACTION TO c##dbzuser CONTAINER=ALL;
 
+  GRANT SELECT ON V_\$MYSTAT TO c##dbzuser CONTAINER=ALL; 
+  GRANT SELECT ON V_\$STATNAME TO c##dbzuser CONTAINER=ALL;
+  
   exit;
 EOF
 

@@ -16,4 +16,3 @@ INSERT INTO customers
   VALUES (NULL,'Edward','Walker','ed@walker.com');
 INSERT INTO customers
   VALUES (NULL,'Anne','Kretchmar','annek@noanswer.org');
-
